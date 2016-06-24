@@ -36,11 +36,11 @@
 \maketitle
 
 \begin{abstract}
-This paper compares the performance of serial and parallel algorithms . The algorithms perform a multiplication of square matrices and will be written in C , Java and Python. Parallelism was performed by OpenMP library, Jomp , the multiprocessing and Cython language. The runtimes were obtained by the time command from a bash terminal. The metric used is based on Amdhal Act, so the language with better performance in parallel has the largest speedup . The algorithms were run on a machine with Intel Core I7-3630QM with SSD ( mSATA ) and Debian stretch Operating System and Gnome 3.20. 
+This paper compares the performance of serial and parallel algorithms . The algorithms perform a multiplication of square matrices and will be written in C , Java and Python. Parallelism was performed by OpenMP library, Jomp , the multiprocessing and Cython language. The runtimes were obtained by the time command from a bash terminal. The metric used is based on Amdahl Act, so the language with better performance in parallel has the largest speedup . The algorithms were run on a machine with Intel Core I7-3630QM with SSD ( mSATA ) and Debian stretch Operating System and Gnome 3.20. 
 \end{abstract}
 
 \begin{resumo}
-Neste trabalho compara-se o desempenho de algoritmos seriais e paralelos. Os algoritmos realizam uma multiplicação entre matrizes quadradas e serão escritos em C, Java e Python. O paralelismo foi efetuado através da biblioteca OpenMP, do Jomp, do Multiprocessing e da linguagem Cython. Os tempos de execução foram obtidos por meio do comando time de um terminal bash. A métrica utilizada é baseada na Lei de Amdhal, portanto a linguagem com melhor desempenho em paralelo tem o maior speedup. Os algoritmos foram executados em uma máquina com Intel Core I7-3630QM, com SSD (mSATA) e com Sistema Operacional Debian stretch e Gnome 3.20.
+Neste trabalho compara-se o desempenho de algoritmos seriais e paralelos. Os algoritmos realizam uma multiplicação entre matrizes quadradas e serão escritos em C, Java e Python. O paralelismo foi efetuado através da biblioteca OpenMP, do Jomp, do Multiprocessing e da linguagem Cython. Os tempos de execução foram obtidos por meio do comando time de um terminal bash. A métrica utilizada é baseada na Lei de Amdahl, portanto a linguagem com melhor desempenho em paralelo tem o maior speedup. Os algoritmos foram executados em uma máquina com Intel Core I7-3630QM, com SSD (mSATA) e com Sistema Operacional Debian stretch e Gnome 3.20.
 \end{resumo}
 \section{Introdução}
 
@@ -50,12 +50,12 @@ O trabalho trata sobre serialização e paralelismo de algoritmos. Os algoritmos
 	 
 	Desde a criação dessas arquiteturas, surgiram diversas bibliotecas ou APIs, entre elas a OpenMP, que será utilizada nesse trabalho. O desenvolvimento  desta API foi realizado através de um trabalho colaborativo entre os diversos parceiros interessados no projeto, entre eles: Compaq/Digital, Hewlett-Packard, Intel, IBM, KAI, Silicon Graphics, Sun entre outros.(JUNIOR; MATTES, 2004). 
 	
-	O trabalho busca analisar e comparar o desempenho entre as linguagens Java, Python e C para execução de um algoritmo de multiplicação entre matrizes. As matrizes serão quadradas e terão ordem 500, 1500 e 2000. O desempenho será avaliado com emprego da lei de Amdhal e com o comando time do shell GNU/Linux em bash. 
+	O trabalho busca analisar e comparar o desempenho entre as linguagens Java, Python e C para execução de um algoritmo de multiplicação entre matrizes. As matrizes serão quadradas e terão ordem 500, 1500 e 2000. O desempenho será avaliado com emprego da lei de Amdahl e com o comando time do shell GNU/Linux em bash. 
 	
-	Conforme Albuquerque (2004), a lei de amdhal é uma maneira de expressar o speedup máximo como uma função da quantidade de paralelismo e da fração da computação que é inerentemente sequencial. O speedup máximo $(S)$ alcançado por um computador paralelo com $p$ processadores executando a computação é:
+	Conforme Albuquerque\footnote{ALBUQUERQUE, Jones. {\bf Lei de Amdahl.}. Recife: DFM-UFRPE: 2004} (2004), a lei de amdahl é uma maneira de expressar o speedup máximo como uma função da quantidade de paralelismo e da fração da computação que é inerentemente sequencial. O speedup máximo $(S)$ alcançado por um computador paralelo com $p$ processadores executando a computação é:
 	
 \begin{equation}
-  \label{eq:amdhal}
+  \label{eq:amdahl}
    S \le \frac{1}{f + \frac{(1-f)}{p}}
 \end{equation}
 
@@ -180,7 +180,7 @@ O comando time retorna o tempo de execução do programa em segundos. A definiç
    T_{medio} = \frac{T_{1} + T_{2} + T_{3}}{3}
 \end{equation}
 
-Uma vez descoberto os tempos de execução, o próximo cálculo realizado foi o do speedup. Este demonstra o ganho de desempenho obtido com a paralelização. A equação \hyperlink{eq:amdhal}{\ref{eq:amdhal}} demonstra como se deu o procedimento de obtenção do speedup.
+Uma vez descoberto os tempos de execução, o próximo cálculo realizado foi o do speedup. Este demonstra o ganho de desempenho obtido com a paralelização. A equação \hyperlink{eq:amdahl}{\ref{eq:amdahl}} demonstra como se deu o procedimento de obtenção do speedup.
 
 Os tempos de execução e os speedups calculados serão demonstrados a seguir por meio de tabelas e gráficos. 
 
