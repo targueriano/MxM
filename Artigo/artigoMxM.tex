@@ -1,0 +1,348 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{sbc-template}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage[mathcal]{eucal}
+\usepackage{latexsym}
+\usepackage[brazil]{babel}
+\usepackage{bm}
+\usepackage[all]{xy}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage[portuguese, ruled, linesnumbered]{algorithm2e}
+\usepackage{subfigure}
+\usepackage[pdftex]{hyperref}
+
+\sloppy
+
+\title{Comparação entre algoritmos serial e paralelo escrito em C, Java e Python\\}
+
+\author{Taylan Branco Meurer\inst{1}, Leandro Loffi\inst{1}, Rodrigo Curvello\inst{2}}
+
+
+\address{Acadêmico Ciência da Computação -- Instituto Federal Catarinense -- Campus Rio do Sul
+          (IFC)\\
+          %Caixa Postal 15.064 -- 91.501-970 -- Porto Alegre -- RS -- Brazil
+        \nextinstitute
+          Professor Ciência da Computação -- Instituto Federal Catarinense -- Campus Rio do Sul\\
+          \email{tbmeurer@gmail.com, leandroloffi3@gmail.com,
+          rodrigo.curvello@ifc-riodosul.edu.br}
+        }
+
+
+\begin{document} 
+
+\maketitle
+
+\begin{abstract}
+This paper compares the performance of serial and parallel algorithms . The algorithms perform a multiplication of square matrices and will be written in C , Java and Python. Parallelism was performed by OpenMP library, Jomp , the multiprocessing and Cython language. The runtimes were obtained by the time command from a bash terminal. The metric used is based on Amdhal Act, so the language with better performance in parallel has the largest speedup . The algorithms were run on a machine with Intel Core I7-3630QM with SSD ( mSATA ) and Debian stretch Operating System and Gnome 3.20. 
+\end{abstract}
+
+\begin{resumo}
+Neste trabalho compara-se o desempenho de algoritmos seriais e paralelos. Os algoritmos realizam uma multiplicação entre matrizes quadradas e serão escritos em C, Java e Python. O paralelismo foi efetuado através da biblioteca OpenMP, do Jomp, do Multiprocessing e da linguagem Cython. Os tempos de execução foram obtidos por meio do comando time de um terminal bash. A métrica utilizada é baseada na Lei de Amdhal, portanto a linguagem com melhor desempenho em paralelo tem o maior speedup. Os algoritmos foram executados em uma máquina com Intel Core I7-3630QM, com SSD (mSATA) e com Sistema Operacional Debian stretch e Gnome 3.20.
+\end{resumo}
+\section{Introdução}
+
+O trabalho trata sobre serialização e paralelismo de algoritmos. Os algoritmos em série são aqueles executados linha após linha por um único processador e algoritmos paralelos são aqueles executados por dois ou mais processadores ao mesmo tempo. 
+
+	As linguagens de programação paralela surgiram como um novo recurso para facilitar a tarefa de construir programas que utilizem os recursos de paralelismo de equipamentos com arquitetura de computação paralela (JUNIOR; MATTES, 2004). Para utilizar plenamente os recursos de um equipamento multiprocessado, existem basicamente duas opções, construir programas com controle sobre os trechos de paralelismo, utilizando recursos de uma Linguagem de Programação para a criação das threads e processos necessários, ou utilizar-se de uma biblioteca, a qual, normalmente, é composta por diretivas de compilador para uma linguagem de programação pré-existente, como C.
+	 
+	Desde a criação dessas arquiteturas, surgiram diversas bibliotecas ou APIs, entre elas a OpenMP, que será utilizada nesse trabalho. O desenvolvimento  desta API foi realizado através de um trabalho colaborativo entre os diversos parceiros interessados no projeto, entre eles: Compaq/Digital, Hewlett-Packard, Intel, IBM, KAI, Silicon Graphics, Sun entre outros.(JUNIOR; MATTES, 2004). 
+	
+	O trabalho busca analisar e comparar o desempenho entre as linguagens Java, Python e C para execução de um algoritmo de multiplicação entre matrizes. As matrizes serão quadradas e terão ordem 500, 1500 e 2000. O desempenho será avaliado com emprego da lei de Amdhal e com o comando time do shell GNU/Linux em bash. 
+	
+	Conforme Albuquerque (2004), a lei de amdhal é uma maneira de expressar o speedup máximo como uma função da quantidade de paralelismo e da fração da computação que é inerentemente sequencial. O speedup máximo $(S)$ alcançado por um computador paralelo com $p$ processadores executando a computação é:
+	
+\begin{equation}
+  \label{eq:amdhal}
+   S \le \frac{1}{f + \frac{(1-f)}{p}}
+\end{equation}
+
+A linguagem C fará uso da API OpenMP, a Java do Jomp e a Python do  OpenMP com Cython.
+
+O trabalho irá no capítulo seguinte tratar sobre a API OpenMP e a linguagem Cython. Em seguida, abordará a metodologia empregada para a construção do trabalho. Logo depois, apresentará os resultados e, por último, relatará as considerações finais e as referências bibliográficas. 
+
+\section{Paralelismo}
+Paralelismo ocorre quando dois ou mais processadores compartilham um mesmo recurso de memória. Há paralelismo quando duas ou mais tarefas de um programa são executadas ao mesmo tempo por dois ou mais processadores. Para cada algoritmo paralelo existe um serial que efetua a mesma tarefa. O objetivo do paralelismo é obter um ganho de desempenho superior quando comparado com o serial.
+
+Existem dois tipos de paralelismo, o de dados e o de controle. No paralelismo de dados, divide-se os dados e distribui-se cada conjunto gerado para um determinado processador. No paralelismo de controle, divide-se os problemas em tarefas independentes e cada tarefa será associada a um processo.  
+
+Nesse capítulo será apresentado de forma genérica informações sobre OpenMP, Multiprocessing e Cython. 
+\subsection{OpenMP}
+
+A API OpenMP oferece um conjunto de diretivas para a programação paralela em sistemas multiprocessados com memória compartilhada, realizando para tal a criação e o controle de Threads (JUNIOR; MATTES, 2004). As diretivas da OpenMP podem ser incluídas em programas escritos nas linguagens “C” e FORTRAN para especificar pedaços de programas que devem ser executados em paralelo.
+
+O Open specification for Multiprocessing, simplesmente OpenMP, é um modelo de programação em memória compartilhada, que faz uso da especificação Pthreads. Ele surgiu a partir da cooperação de grandes fabricantes, como: Sun, IBM, Intel, AMD, HP, etc. Projetada para operar em C e Fortran, as especificações são diretivas que dizem ao compilador como gerar códigos paralelos. 
+
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics{pictures/openMP.jpg}
+  \caption{Paralelismo.}
+\label{fig:parallel}
+\end{figure}
+
+Conforme a figura \ref{fig:parallel}, pode-se visualizar a forma como pode ser dividida e o funcionamento de um programa que tem tarefas paralelas. Esta imagem foi brevemente dividida uma primeira parte em uma tarefa de 3 núcleos, na segunda parte em uma tarefa de 4 núcleos, e por último uma tarefa em 2 núcleos. Entre as tarefas, tem uma área comum serial, estas podem ser momentos em que uma tarefa pode estar ocupando um recurso de outra tarefa. Por fim mesmo que algum momento uma tarefa ficar dependendo de recurso de outra tarefa, ao final do programa a execução deverá ser mais rápida.
+
+Internamente a OpenMP trabalha com um modelo “FORK-Join” onde a partir de uma
+“thread master” (aquela que iniciou o programa) cria-se um time de threads para a
+realização de tarefas em paralelo, e depois é realizado um join onde todas as threads
+são sincronizadas e destruídas, sobrando somente a master thread.
+
+O algoritmo 1 demonstra a seguir um exemplo básico do uso de uma instrução em paralelo com OpenMP. Posteriormente será listada as principais diretivas e parâmetros da API.  
+
+\begin{itemize}
+  \item shared: variáveis compartilhadas por todas as threads;
+  \item privates: variáveis privadas as threads;
+  \item copyn: as variáveis possuem o valor inicial igual ao valor da thread principal;
+  \item redution: define uma fórmula para combinar as variáveis de todas as threads na variável da thread master;
+  \item mater: região executada apenas pela thread master;
+  \item critical: região que permite acesso apenas a uma thread por vez;
+  \item atomic: atribuição ocorre em série
+  \item barrier: sincroniza todas as threads;
+  \item flush: atualiza as variáveis públicas para evitar inconsistência de dados.
+\end{itemize}
+
+A lista acima não esgota o rol de diretivas e parâmetros da biblioteca OpenMP, mas são suficientes para a compreensão dos algoritmos. Estes algoritmos serão tratados mais tarde. A próxima seção irá contemplar breves informações sobre o módulo de paralelismo para Python - multiprocessing e Cython. 
+
+\subsection{Multiprocessing}
+Multiprocessing\footnote{Disponível em:$<$https://docs.python.org/2/library/multiprocessing.html$>$ Acessado em: 23 de junho de 2016.} é um módulo Python para processamento paralelo. Ele faz uso de uma API semelhante ao threading. 
+O pacote multiprocessing oferece concorrência local e remota, contornando o Global Interpreter Lock através de subprocessos no lugar de threads. Por essa razão, esse módulo permite ao programador tirar proveito total dos múltiplos processadores em uma determinada máquina.
+O multiprocessing também apresenta APIs com características distintas do módulo threading. Um bom exemplo disso é o objeto Pool, o qual oferece um meio conveniente de paralelização por meio de uma função com vários valores de entrada, distribuindo esses dados de entrada nos processos (paralelismo de dados). 
+
+\subsection{Cython}
+O Cython pode ser definido como uma linguagem com tipos de dados em C. Quase todo código em Python é válido em Cython. Ele é uma linguagem que permite a geração de código C compilável e a geração de módulos para Python, tudo a partir de um código em Python. 
+
+Por que gerar módulos para Python em Cython? Por causa do desempenho, pois garante-se, no mínimo, 25\% de ganhos com relação ao Python puro. A virtude do Cython é a sua capacidade de usar variáveis e parâmetros como tipos de dados em C. As variáveis e parâmetros podem ser mistarados sem afetar a execução. Além disso, o Cython suporta paralelismo nativo atráveis do módulo {\bf cython.parallel}, que emprega a API OpenMP. 
+
+\section{Algoritmo}
+A seguir será demonstrado o pseudocódigo do algoritmo utilizado no trabalho para execução paralela em C. Para obter o serial basta remover as diretivas do openmp: \#pragma omp argumento. 
+
+\subsection{Paralelo}
+\begin{algorithm}[H]
+   \SetAlgoLined   
+   \Entrada{Definir variáveis (i,j,k) e a constante SIZE\\
+            Inicializar as matrizes (A,B,C) de ordem SIZE\\
+            Definir número de threads (NUM)\\
+           }
+   \Inicio
+   { 
+       \#pragma omp parallel shared(A,B,C) private(i,j,k) num\underline{\space}threads(NUM) \\
+       \{\\
+        \#pragma omp for\\
+        \Para{cada i até SIZE}
+        {
+            \Para{cada j até SIZE}
+            {
+                $A[i][j] = 3 \ast  i +  j$\\
+        				$B[i][j] = i +  3 \ast  j$\\
+	    	    		$C[i][j] = 0$\\
+            }  
+            
+            
+        }
+        
+        \#pragma omp for\\
+        \Para{cada i até SIZE}
+        {
+            \Para{cada k até SIZE}
+            {
+                \Para{cada j até SIZE}
+                {
+                   $C[i][j] = C[i][j] + A[i][k] \ast  B[k][j]$\\
+                }
+            }
+        }
+      \}
+    
+   }
+   \label{alg:MxM}
+   \caption{algoritmo paralelo}
+\end{algorithm}
+
+
+\section{Metodologia}
+A metodologia faz uso da linguagem C, Java e Python (versão 2.7). Cada linguagem é composta por dois algoritmos, um serial e outro paralelo. O código paralelo em C é implementado com uso da API OpenMP. Em Java, o paralelismo é feito com Jomp e em Python com multiprocessing e Cython. 
+
+O algoritmo implementa uma multiplicação entre matrizes. Essa implementação é bastante conhecida e generalista. Além disso, exige grande esforço computacional. Os tempos de execução foram obtidos por meio do comando de terminal {\it time}\footnote{Disponível em: $<$http://ss64.com/bash/time.html$>$ Acessado em: 22 de junho de 2016.}. Este comando registra o tempo de CPU utilizado e retorna o valor em segundos.  
+
+Os testes foram executados em uma máquina Intel Core I7 3630QM, CPU 3.4 GHz. A máquina possui 8GB de memória RAM e faz uso de um SSD mSATA. O Sistema Operacional instalado é o Debian stretch com kernel 4.6.0-1-amd64 e Gnome.
+
+\section{Resultados e discussões}
+Os resultados foram atingidos por meio do comando time para o terminal em bash. Um exemplo de execução é demonstrado a seguir: 
+$\$\hspace{0.1cm} time \hspace{0.1cm} python \hspace{0.1cm}programa.py$
+O comando time retorna o tempo de execução do programa em segundos. A definição do tempo de execução se deu conforme a equação \ref{eq:tempo_exec}.
+\begin{equation}
+  \label{eq:tempo_exec}
+   T_{medio} = \frac{T_{1} + T_{2} + T_{3}}{3}
+\end{equation}
+
+Uma vez descoberto os tempos de execução, o próximo cálculo realizado foi o do speedup. Este demonstra o ganho de desempenho obtido com a paralelização. A equação \hyperlink{eq:amdhal}{\ref{eq:amdhal}} demonstra como se deu o procedimento de obtenção do speedup.
+
+Os tempos de execução e os speedups calculados serão demonstrados a seguir por meio de tabelas e gráficos. 
+
+
+
+\begin{table}
+  \centering
+  \caption{Tempo de execução -- C}
+  \begin{tabular}{ccc}
+    \hline
+    Matriz(ordem) & Serial(s) & Paralelo(s)\\
+    \hline
+    \hline
+    500 & 0.446 & 0.127\\
+    1000 & 3.292 & 0.898\\
+    1500 & 11.461 & 3.189\\
+    2000 & 26.847 & 7.235\\
+    \hline
+  \end{tabular}
+  \label{tab:timec}
+\end{table}
+
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15.0cm]{pictures/speedup_C.png}
+  \caption{Ordem x Speedup - C (OpenMP)}
+\label{fig:speedup_C}
+\end{figure}
+
+
+
+\begin{table}
+  \centering
+  \caption{Tempo de execução -- Java}
+  \begin{tabular}{ccc}
+    \hline
+    Matriz(ordem) & Serial(s) & Paralelo(s) -- Jomp\\
+    \hline
+    \hline
+    500 & 0.228 & 0.189\\
+    1000 & 0.845 & 0.413\\
+    1500 & 2.590 & 1.000\\
+    2000 & 6.274 & 2.157\\
+    \hline
+  \end{tabular}
+  \label{tab:timeJava}
+\end{table}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15.0cm]{pictures/speedup_Java.png}
+  \caption{Ordem x Speedup - Java (Jomp)}
+\label{fig:speedup_Java}
+\end{figure}
+
+
+\begin{table}
+  \centering
+  \caption{Tempo de execução -- Cython}
+  \begin{tabular}{ccc}
+    \hline
+    Matriz(ordem) & Serial(s) & Paralelo(s) -- Cython \\
+    \hline
+    \hline
+    500 & 0.837 &  0.504 \\
+    1000 & 10.186 & 3.841\\
+    1500 & 30.911 & 12.314\\
+    2000 & 1min41.794 & 29.442\\
+    \hline
+  \end{tabular}
+  \label{tab:timePy1}
+\end{table}
+
+
+\begin{figure}[!htb]  
+  \centering
+  \includegraphics[width=15.0cm]{pictures/speedup_Cython.png}
+  \caption{Ordem x Speedup - Cython (OpenMP)}
+\label{fig:speedup_Cython}
+\end{figure}
+
+
+Na execução do python com multiprocessing foi efetuada uma alteração no algoritmo serial. No lugar de uma multiplição entre matrizes, realizou-se duas multiplicações. Na prática, uma repetição foi inclusa na função de multiplicação. Dessa forma, tornou-se mais convincente o uso do paralelismo com multiprocessing. Os tempos podem ser observados na tabela \ref{tab:timePy2}. 
+
+\begin{table}
+  \centering
+  \caption{Tempo de execução -- Python2.7}
+  \begin{tabular}{ccc}
+    \hline
+    Matriz(ordem) & Serial(s) & Paralelo(s) -- Multiprocessing \\
+    \hline
+    \hline
+    500 & 1.021 &  0.912 \\
+    1000 & 17.073 & 9.797\\
+    1500 & 1min7.847 & 31.116\\
+    2000 & 2min27.214 & 1min17.700\\
+    \hline
+  \end{tabular}
+  \label{tab:timePy2}
+\end{table}
+
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15.0cm]{pictures/speedup_Python.png}
+  \caption{Ordem x Speedup - Python (Multiprocessing)}
+\label{fig:speedup_Python}
+\end{figure}
+
+
+Conforme os valores obtidos e os gráficos gerados, é possível observar que a linguagem C obteve speedup entre 3.5 e 3.7, aproximadamente. O Python com multiprocessing obteve os menores valores de speedup, os quais variaram de 1 a 2, aproximadamente. Já o Cython e o Java ficaram entre 1 e 3, com uma leve vantagem para o Cython. A figura \ref{fig:speedup_full} ilustra o speedup de cada linguagem. 
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15.0cm]{pictures/speedup_Full.png}
+  \caption{Ordem x Speedup}
+\label{fig:speedup_full}
+\end{figure}
+
+Exceto o Python com multiprocessing, as demais linguagens realizaram somente uma multiplicação entre matrizes. Isso aconteceu para que o módulo do multiprocessing fosse aproveitado de forma convincente, caso contrário não haveria ganhos. Por essa razão é possível notar um tempo serial de execução superior ao tempo serial da base de cálculo do Cython.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15.0cm]{pictures/tempo_serial.png}
+  \caption{tempo serial}
+\label{fig:tempo_serial}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15.0cm]{pictures/tempo_paralelo.png}
+  \caption{Tempo paralelo}
+\label{fig:tempo_paralelo}
+\end{figure}
+
+
+
+\section{Considerações finais}
+O trabalho comparou o desempenho de algoritmos seriais com paralelos. Os algoritmos implementaram uma multiplicação entre matrizes quadradas de ordem 500, 1000, 1500 e 2000. 
+
+Em termos de tempo de execução, a linguagem Java foi a que obteve melhores resultados. Todavia, em termos de speedup, a linguagem C conseguiu atingir os valores mais altos. Lembrando, quanto maiores os valores, melhor desempenho aconteceu durante execução paralela. O speedup do Cython atingiu bons resultados e demonstrou que a linguagem cumpre as promessas de grande desempenho com relação ao Python. 
+
+A partir dos resultados, que são bem limitados, nota-se que o emprego do OpenMP é mais vantajoso para a linguagem nativa, a saber, a C. Embora haja diversos projetos, bibliotecas ou módulos eficientes para as linguagens apresentadas nesse artigo, a interação entre API e linguagem ainda não é madura suficiente.  
+
+\section{Referências bibliográficas}
+\noindent
+\cite{1} CHANDRA, R. et al. “Parallel programming in openmp”. Morgan Kaufmann, 2001.\\
+\hspace{0.5cm}
+\cite{2} CORMEN, Thomas H. et al. “Introduction to Algorithms. The MIT Press”. Cambridge, Massachusetts, 2 Edição, 2001.\\
+\hspace{0.5cm}
+\cite{3} DANTAS, Sérgio Carrazedo, “Produções de significados para o jogo resta zero”, 2013. \\
+\hspace{0.5cm}
+\cite{4} JUNIOR, Claudio Penasio; MATTES, Leonardo. Análise Comparativa de Desempenho de um algoritmo Paralelo
+implementado nas Linguagens de Programação CPAR e OpenMP. São Paulo: 2004. \\
+\hspace{0.5cm}
+\cite{5} SOURCEFORGE, “Solitário”, http://peg-solitaire.sourceforge.net/, 2015, acessado em 02/06/16.\\
+\hspace{0.5cm}
+\cite{6} OpenMP, “OpenMP Application Programming Interface”. Disponível em:$<$http://www.openmp.org/mp-documents/openmp-4.5.pdf$>$ Acessado em: 02/06/2016\\
+\hspace{0.5cm}
+\cite{7} DEITEL, Harvey M.; DEITEL, Paul J. “Java como programar”. 8. ed. São Paulo: Pearson Prentice Hall, 2010. XL, 804-854 p.\\
+
+\bibliographystyle{sbc}
+\bibliography{sbc-template}
+
+
+\end{document}

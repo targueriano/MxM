@@ -1,0 +1,1 @@
+mmatrizes.d: ../mmatrizes.c
