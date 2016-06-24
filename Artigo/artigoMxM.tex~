@@ -13,7 +13,7 @@
 \usepackage[portuguese, ruled, linesnumbered]{algorithm2e}
 \usepackage{subfigure}
 \usepackage[pdftex]{hyperref}
-\usepackage{float}
+
 \sloppy
 
 \title{Comparação entre algoritmos serial e paralelo escrito em C, Java e Python\\}
@@ -119,7 +119,8 @@ Por que gerar módulos para Python em Cython? Por causa do desempenho, pois gara
 \section{Algoritmo}
 A seguir será demonstrado o pseudocódigo do algoritmo utilizado no trabalho para execução paralela em C. Para obter o serial basta remover as diretivas do openmp: \#pragma omp argumento. 
 
-\begin{algorithm}[!htb]
+\subsection{Paralelo}
+\begin{algorithm}[H]
    \SetAlgoLined   
    \Entrada{Definir variáveis (i,j,k) e a constante SIZE\\
             Inicializar as matrizes (A,B,C) de ordem SIZE\\
@@ -169,12 +170,9 @@ O algoritmo implementa uma multiplicação entre matrizes. Essa implementação 
 Os testes foram executados em uma máquina Intel Core I7 3630QM, CPU 3.4 GHz. A máquina possui 8GB de memória RAM e faz uso de um SSD mSATA. O Sistema Operacional instalado é o Debian stretch com kernel 4.6.0-1-amd64 e Gnome.
 
 \section{Resultados e discussões}
-
 Os resultados foram atingidos por meio do comando time para o terminal em bash. Um exemplo de execução é demonstrado a seguir: 
 $\$\hspace{0.1cm} time \hspace{0.1cm} python \hspace{0.1cm}programa.py$
-
 O comando time retorna o tempo de execução do programa em segundos. A definição do tempo de execução se deu conforme a equação \ref{eq:tempo_exec}.
-
 \begin{equation}
   \label{eq:tempo_exec}
    T_{medio} = \frac{T_{1} + T_{2} + T_{3}}{3}
@@ -184,7 +182,9 @@ Uma vez descoberto os tempos de execução, o próximo cálculo realizado foi o 
 
 Os tempos de execução e os speedups calculados serão demonstrados a seguir por meio de tabelas e gráficos. 
 
-\begin{table}[H]
+
+
+\begin{table}
   \centering
   \caption{Tempo de execução -- C}
   \begin{tabular}{ccc}
@@ -202,15 +202,16 @@ Os tempos de execução e os speedups calculados serão demonstrados a seguir po
 \end{table}
 
 
-%\begin{figure}[!htb]
-%  \centering
-%  \includegraphics[width=15.0cm]{pictures/speedup_C.png}
-%  \caption{Ordem x Speedup - C (OpenMP)}
-%\label{fig:speedup_C}
-%\end{figure}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15.0cm]{pictures/speedup_C.png}
+  \caption{Ordem x Speedup - C (OpenMP)}
+\label{fig:speedup_C}
+\end{figure}
 
 
-\begin{table}[H]
+
+\begin{table}
   \centering
   \caption{Tempo de execução -- Java}
   \begin{tabular}{ccc}
@@ -227,15 +228,15 @@ Os tempos de execução e os speedups calculados serão demonstrados a seguir po
   \label{tab:timeJava}
 \end{table}
 
-%\begin{figure}[!htb]
-%  \centering
-%  \includegraphics[width=15.0cm]{pictures/speedup_Java.png}
-%  \caption{Ordem x Speedup - Java (Jomp)}
-%\label{fig:speedup_Java}
-%\end{figure}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15.0cm]{pictures/speedup_Java.png}
+  \caption{Ordem x Speedup - Java (Jomp)}
+\label{fig:speedup_Java}
+\end{figure}
 
 
-\begin{table}[H]
+\begin{table}
   \centering
   \caption{Tempo de execução -- Cython}
   \begin{tabular}{ccc}
@@ -253,17 +254,17 @@ Os tempos de execução e os speedups calculados serão demonstrados a seguir po
 \end{table}
 
 
-%\begin{figure}[!htb]  
-%  \centering
-%  \includegraphics[width=15.0cm]{pictures/speedup_Cython.png}
-%  \caption{Ordem x Speedup - Cython (OpenMP)}
-%\label{fig:speedup_Cython}
-%\end{figure}
+\begin{figure}[!htb]  
+  \centering
+  \includegraphics[width=15.0cm]{pictures/speedup_Cython.png}
+  \caption{Ordem x Speedup - Cython (OpenMP)}
+\label{fig:speedup_Cython}
+\end{figure}
 
 
-Na execução do python com multiprocessing foi efetuada uma alteração no algoritmo serial. No lugar de uma multiplição entre matrizes, realizou-se duas multiplicações. Na prática, uma repetição foi inclusa na função de multiplicação. Dessa forma, tornou-se mais convincente o uso do paralelismo com multiprocessing, pois foi possível fazer com que cada processador executasse em paralelo uma multiplicação entre matrizes. Os tempos podem ser observados na tabela \ref{tab:timePy2}. 
+Na execução do python com multiprocessing foi efetuada uma alteração no algoritmo serial. No lugar de uma multiplição entre matrizes, realizou-se duas multiplicações. Na prática, uma repetição foi inclusa na função de multiplicação. Dessa forma, tornou-se mais convincente o uso do paralelismo com multiprocessing. Os tempos podem ser observados na tabela \ref{tab:timePy2}. 
 
-\begin{table}[H]
+\begin{table}
   \centering
   \caption{Tempo de execução -- Python2.7}
   \begin{tabular}{ccc}
@@ -281,34 +282,35 @@ Na execução do python com multiprocessing foi efetuada uma alteração no algo
 \end{table}
 
 
-%\begin{figure}[H]
-%  \centering
-%  \includegraphics[width=15.0cm]{pictures/speedup_Python.png}
-%  \caption{Ordem x Speedup - Python (Multiprocessing)}
-%\label{fig:speedup_Python}
-%\end{figure}
-
-\begin{figure}[H]
+\begin{figure}[!htb]
   \centering
-  \includegraphics[width=11.0cm]{pictures/speedup_full2.png}
-  \caption{Ordem x Speedup}
-\label{fig:speedup_full}
+  \includegraphics[width=15.0cm]{pictures/speedup_Python.png}
+  \caption{Ordem x Speedup - Python (Multiprocessing)}
+\label{fig:speedup_Python}
 \end{figure}
 
 
 Conforme os valores obtidos e os gráficos gerados, é possível observar que a linguagem C obteve speedup entre 3.5 e 3.7, aproximadamente. O Python com multiprocessing obteve os menores valores de speedup, os quais variaram de 1 a 2, aproximadamente. Já o Cython e o Java ficaram entre 1 e 3, com uma leve vantagem para o Cython. A figura \ref{fig:speedup_full} ilustra o speedup de cada linguagem. 
 
-
-\begin{figure}[H]
+\begin{figure}[!htb]
   \centering
-  \includegraphics[width=11.0cm]{pictures/tempo_serial.png}
+  \includegraphics[width=15.0cm]{pictures/speedup_Full.png}
+  \caption{Ordem x Speedup}
+\label{fig:speedup_full}
+\end{figure}
+
+Exceto o Python com multiprocessing, as demais linguagens realizaram somente uma multiplicação entre matrizes. Isso aconteceu para que o módulo do multiprocessing fosse aproveitado de forma convincente, caso contrário não haveria ganhos. Por essa razão é possível notar um tempo serial de execução superior ao tempo serial da base de cálculo do Cython.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15.0cm]{pictures/tempo_serial.png}
   \caption{tempo serial}
 \label{fig:tempo_serial}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[!htb]
   \centering
-  \includegraphics[width=11.0cm]{pictures/tempo_paralelo.png}
+  \includegraphics[width=15.0cm]{pictures/tempo_paralelo.png}
   \caption{Tempo paralelo}
 \label{fig:tempo_paralelo}
 \end{figure}
@@ -319,8 +321,6 @@ Conforme os valores obtidos e os gráficos gerados, é possível observar que a 
 O trabalho comparou o desempenho de algoritmos seriais com paralelos. Os algoritmos implementaram uma multiplicação entre matrizes quadradas de ordem 500, 1000, 1500 e 2000. 
 
 Em termos de tempo de execução, a linguagem Java foi a que obteve melhores resultados. Todavia, em termos de speedup, a linguagem C conseguiu atingir os valores mais altos. Lembrando, quanto maiores os valores, melhor desempenho aconteceu durante execução paralela. O speedup do Cython atingiu bons resultados e demonstrou que a linguagem cumpre as promessas de grande desempenho com relação ao Python. 
-
-Exceto o Python com multiprocessing, as demais linguagens realizaram somente uma multiplicação entre matrizes. Isso aconteceu para que o módulo do multiprocessing fosse aproveitado de forma convincente, caso contrário não haveria ganhos. Por essa razão é possível notar um tempo serial de execução superior ao tempo serial da base de cálculo do Cython.
 
 A partir dos resultados, que são bem limitados, nota-se que o emprego do OpenMP é mais vantajoso para a linguagem nativa, a saber, a C. Embora haja diversos projetos, bibliotecas ou módulos eficientes para as linguagens apresentadas nesse artigo, a interação entre API e linguagem ainda não é madura suficiente.  
 

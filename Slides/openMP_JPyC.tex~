@@ -59,11 +59,12 @@
 % ---
 
 % --- Informações do documento ---
-\title{Modelo de apresentação de slides com Beamer e abnTeX2}
-\author{Fábio Rodrigues Silva}
-\institute{Universidade do Brasil
+\title{Comparação entre algoritmos serial e paralelo escrito em C,
+Java e Python}
+\author{Taylan Branco Meurer \\ Leandro Loffi}
+\institute{Programação Paralela e Multicore
 	    \par
-	    Faculdade de Arquitetura da Informação}
+	    7º fase BCC}
 \date{\today, v-1.9.6}
 % ---
 
@@ -77,11 +78,11 @@
   \centering
   \begin{tabular}{cc}
     \begin{tabular}{c}
-      \includegraphics[width=3.0cm]{abntex2-modelo-img-marca.pdf}
+      \includegraphics[width=3.0cm]{pictures/logo.jpg}
     \end{tabular}
     &
     \begin{tabular}{c}
-      \textbf{Universidade do Brasil} \\ \textbf{Faculdade de Arquitetura da Informação}
+      \textbf{Instituto Federal Catarinense} \\ \textbf{Campus Rio do Sul}
     \end{tabular}
   \end{tabular}
 \end{minipage}
@@ -100,83 +101,76 @@
 
 \begin{frame}{Introdução}
 
-Sinta-se convidado a participar do projeto abnTeX! Acesse o site do projeto em
-\url{http://www.abntex.net.br/}. Também fique livre para conhecer,
-estudar, alterar e redistribuir o trabalho do ABNTEX, desde que os arquivos
-modificados tenham seus nomes alterados e que os créditos sejam dados aos
-autores originais, nos termos da ``The LATEX Project Public
-License''\ \url{http://www.latex-project.org/lppl.txt} \cite[p. 31]{abntex2modelo}.
+Neste trabalho compara-se o desempenho de algoritmos seriais e paralelos. Os algoritmos realizam uma multiplicação entre matrizes quadradas e serão escritos em C, Java e Python. O paralelismo foi efetuado através da biblioteca OpenMP, do Jomp, do Multiprocessing e da linguagem Cython. Os tempos de execução foram obtidos por meio do comando time de um terminal bash. A métrica utilizada é baseada na Lei de Amdhal, portanto a linguagem com melhor desempenho em paralelo tem o maior speedup. Os algoritmos foram executados em uma máquina com Intel Core I7-3630QM, com SSD (mSATA) e com Sistema Operacional Debian stretch e Gnome 3.20.
 
 \end{frame}
 
 % ----------------- NOVO SLIDE --------------------------------
-\section{Fontes a serem consultadas}
+\section{OpenMP}
 \begin{frame}
-\frametitle{Público-Alvo}
-\framesubtitle{Usuários já iniciados ao Beamer}
+\frametitle{Diretivas OpenMP}
+\framesubtitle{Diretivas utilizadas nos códigos paralelos}
 
-\begin{block}{Título}
- Este modelo foi preparado como uma aplicação do uso do pacote abnTeX2 com o Beamer.
+\begin{block}{For}
+  \#pragma omp for\\
+  \#pragma omp for shared(A, B, C, size) private(i,j, k) num\underline{\hspace{.10in}}threads(8)
 \end{block}
 
 \begin{itemize}
- \item Alguns comandos são explicados no modelo TEX. \pause
+ \item O primeiro for foi empregado na geração da matriz para o código C e Java\pause
  
- \item Para maiores informações, consulte o guia do usuário Beamer 
- (\url{https://www.ctan.org/pkg/beamer})\pause
+ \item O segundo for foi empregado no procedimento que efetua a multiplicação entre matrizes \pause
  
- \item Para alterar o tema e as cores, consulte 
- \url{http://deic.uab.es/~iblanes/beamer_gallery/index.html}
+ \item Para mais informações, consulte 
+ \url{http://openmp.org/wp/}
  
- \item Consulte também \url{http://www.hartwork.org/beamer-theme-matrix/}
 \end{itemize}
 
 \end{frame}
 
 % ----------------- NOVO SLIDE --------------------------------
-\begin{frame}{CTAN}
-
-Visite com frequência a página \url{http://www.ctan.org/}. 
+\begin{frame}{Multiprocessing}
+\section{Multiprocessing}
+Visite \url{https://docs.python.org/2/library/multiprocessing.html}.\\ 
 Use-a como um guia de orientações gerais.
 \vspace{0.7cm}
 
-Outras fontes a serem consideradas:
+Multiprocessing é um módulo Python para processamento paralelo. Ele faz uso de uma API semelhante ao threading. 
+O pacote multiprocessing oferece concorrência local e remota, contornando o Global Interpreter Lock através de subprocessos no lugar de threads. Por essa razão, esse módulo permite ao programador tirar proveito total dos múltiplos processadores em uma determinada máquina.
+
+Visualizar código no repositório:
 \begin{enumerate}
- \item \url{http://www.latex-project.org/}
- \item \url{http://www.tex-br.org/}
- \item \url{http://latexbr.blogspot.com.br/}
- \item \url{http://tex.stackexchange.com/}
- \item \url{http://www.tug.org/}
+ \item \url{https://github.com/targueriano}
 \end{enumerate}
 
 \end{frame}
 
 % ----------------- NOVO SLIDE --------------------------------
-\begin{frame}
+\begin{frame}{Cython}
+\section{Cython}
 
-\begin{figure}
-  \centering
-  \includegraphics[scale=1.0]{abntex2-modelo-img-marca.pdf}
-  \caption{Marca abnTeX2. Fonte: \url{http://www.abntex.net.br/}}
-\end{figure}
+Visite \url{http://docs.cython.org/src/userguide/parallelism.html}.\\ 
+Use-a como um guia de orientações gerais.
+\vspace{0.7cm}
+
+O Cython pode ser definido como uma linguagem com tipos de dados em C. Quase todo código em Python é válido em Cython. Ele é uma linguagem que permite a geração de código C compilável e a geração de módulos para Python, tudo a partir de um código em Python. 
+
+Visualizar código no repositório:
+\begin{enumerate}
+ \item \url{https://github.com/targueriano}
+\end{enumerate}
+
 
 \end{frame}
 
 % ----------------- NOVO SLIDE --------------------------------
-\begin{frame}{Participe dos grupos de discussão}
+\begin{frame}{Metodologia}
+\section{Metodologia}
 
-\begin{itemize}
-  \item Tire dúvidas e ajude outros por meio do grupo de usuários LaTeX
-  \url{https://groups.google.com/group/latex-br} (e-mail:
-  \url{latex-br@googlegroups.com})
-  
-  \item Proponha melhorias, avise sobre falhas e faça sugestões sobre o abnTeX2
-  no grupo dos desenvolvedores \url{https://groups.google.com/group/abntex2}
-  (e-mail: \url{abntex2@googlegroups.com});
-\end{itemize}
+A metodologia faz uso da linguagem C, Java e Python (versão 2.7). Cada linguagem é composta por dois algoritmos, um serial e outro paralelo. O código paralelo em C é implementado com uso da API OpenMP. Em Java, o paralelismo é feito com Jomp e em Python com multiprocessing e Cython. 
+O algoritmo implementa uma multiplicação entre matrizes. Essa implementação é bastante conhecida e generalista. Além disso, exige grande esforço computacional.
 
-Participe também da comunidade abnTeX2 no Google Plus
-\url{https://plus.google.com/u/0/communities/105202176004387477100}.
+Os testes foram executados em uma máquina Intel Core I7 3630QM, CPU 3.4 GHz. A máquina possui 8GB de memória RAM e faz uso de um SSD mSATA. O Sistema Operacional instalado é o Debian stretch com kernel 4.6.0-1-amd64 e Gnome.
 
 \end{frame}
 
@@ -184,48 +178,53 @@ Participe também da comunidade abnTeX2 no Google Plus
 \section{Resultados}
 
 \begin{frame}
-\frametitle{ABNT}
-\framesubtitle{Normas para trabalhos acadêmicos}
+\frametitle{Gráficos}
+\framesubtitle{I}
 
-Para adequar seus documentos acadêmicos com as normas ABNT, utilize:
-\begin{enumerate}
- \item \citeonline{NBR14724:2011}: Esta Norma especifica os princípios gerais
- para a elaboração de trabalhos acadêmicos (teses, dissertações e outros),
- visando sua apresentação à instituição (banca, comissão examinadora de
- professores, especialistas designados e/ou outros).
- 
- \item \citeonline{NBR6028:2003}: Esta Norma estabelece os requisitos para
- redação e apresentação de resumos.
- 
- \item \citeonline{NBR6024:2012}: Esta Norma especifica os princípios gerais
- para de um sistema de numeração progressiva das seções de um documento, de
- modo a expor numa seqüência lógica o inter-relacionamento da matéria e a
- permitir sua localização.
- 
- \item \citeonline{NBR10520:2002}: Esta Norma especifica as características
- exigíveis para a apresentação de citações em documentos.
-\end{enumerate}
+\begin{figure}
+  \centering
+  \includegraphics[width=8cm]{pictures/speedup_full2.png}
+  \caption{Speedup {\small Fonte: do autor}}
+\end{figure}
 
 \end{frame}
 
 % ----------------- NOVO SLIDE --------------------------------
-\begin{frame}
-\frametitle{abnTeX2}
-\framesubtitle{Usando a suíte abnTeX2}
+\begin{frame}{Resultados}
+\frametitle{Gráficos}
+\framesubtitle{II}
 
-Consulte \citeonline{abntex2-wiki-como-customizar} para customizações do abnTeX2.
-\vspace{0.5cm}
-
-Os documentos \citeonline{abntex2modelo-artigo},
-\citeonline{abntex2modelo-relatorio} e \citeonline{abntex2modelo} tratam dos
-principais trabalhos acadêmicos e suas aplicações ao TeX.
-\vspace{0.5cm}
-
-Para orientações sobre as citações e as referências com o abnTeX2, consulte
-\citeonline{abntex2cite} e \citeonline{abntex2cite-alf}.
-\vspace{0.5cm}
+\begin{figure}
+  \centering
+  \includegraphics[width=8cm]{pictures/tempo_serial.png}
+  \caption{Tempo serial {\small Fonte: do autor}}
+\end{figure}
 
 \end{frame}
+
+% ----------------- NOVO SLIDE --------------------------------
+\begin{frame}{Resultados}
+\frametitle{Gráficos}
+\framesubtitle{III}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=8cm]{pictures/tempo_paralelo.png}
+  \caption{Tempo paralelo {\small Fonte: do autor}}
+\end{figure}
+
+\end{frame}
+
+
+% ----------------- NOVO SLIDE --------------------------------
+\section{Conclusão}
+\begin{frame}{Conclusão}
+
+A partir dos resultados, que são bem limitados, nota-se que o emprego do OpenMP é mais vantajoso para a linguagem nativa, a saber, a C. Embora haja diversos projetos, bibliotecas ou módulos eficientes para as linguagens apresentadas nesse artigo, a interação entre API e linguagem ainda não é madura suficiente.
+
+\end{frame}
+
+
 
 % ----------------- NOVO SLIDE --------------------------------
 \section{Referências}
@@ -237,7 +236,19 @@ Para orientações sobre as citações e as referências com o abnTeX2, consulte
 % um número romano ou algo parecido na continuação.
 
 \begin{frame}[allowframebreaks]{Referências}
+\footnotesize
+{
+  \begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
+  \bibitem[Chandra, 2001]{p1} CHANDRA, R. et al. (2001)
+  \newblock “Parallel programming in openmp”
+  \newblock \emph{Morgan Kaufmann}.
+
+
+  \end{thebibliography}
+}
+
 \bibliography{abntex2-modelo-references}
+
 \end{frame}
 
 % ----------------- FIM DO DOCUMENTO -----------------------------------------

@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex artigoMxM"] 1466728962 "artigoMxM.aux" "artigoMxM.bbl" "artigoMxM" 1466728963
-  "artigoMxM.aux" 1466728963 4586 a29bb0ccd42da9d57c12bd725f8f3623 ""
+["bibtex artigoMxM"] 1466737695 "artigoMxM.aux" "artigoMxM.bbl" "artigoMxM" 1466737695
+  "artigoMxM.aux" 1466737695 3680 6df20ab839c3affc528a26be13efbb98 ""
   "artigoMxM.bcf" 0 -1 0 ""
   "sbc-template.bib" 0 -1 0 ""
   "sbc.bst" 0 -1 0 ""
   (generated)
-  "artigoMxM.blg"
   "artigoMxM.bbl"
-["pdflatex"] 1466728962 "artigoMxM.tex" "artigoMxM.pdf" "artigoMxM" 1466728963
+  "artigoMxM.blg"
+["pdflatex"] 1466737695 "artigoMxM.tex" "artigoMxM.pdf" "artigoMxM" 1466737695
   "/etc/texmf/web2c/texmf.cnf" 1461951382 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -148,6 +148,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd" 1454284088 2020 d5c6fbbe41610194529ecfc3e463c559 ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def" 1459635588 7784 02e454c0f50491e8730511d8fcc96a47 ""
   "/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty" 1160175134 20521 e5d13d98d57bd53d4fed3aa61bd29c86 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/float/float.sty" 1137110151 6749 16d2656a1984957e674b149555f1ea1d ""
   "/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty" 1284422013 40502 e003406220954b0716679d7928aedd8a ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg" 1459978653 3103 f32642b1cd56c010cdfb6545539b7f0b ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty" 1462915952 14391 bd64a9e5d07473b936423b5f3280ed2c ""
@@ -183,22 +184,18 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1463968324 31343 f2e32048345d99cc298f1946c940b7dd ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1466611432 127883 e42ae2255687882b9ec2558919808412 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1466611434 803641 352d51ab8ad20dc986ac78b13b830ef2 ""
-  "artigoMxM.aux" 1466728963 4586 a29bb0ccd42da9d57c12bd725f8f3623 ""
+  "artigoMxM.aux" 1466737695 3680 6df20ab839c3affc528a26be13efbb98 ""
   "artigoMxM.bbl" 0 -1 0 "bibtex artigoMxM"
-  "artigoMxM.out" 1466728963 609 d9290498ab64c04005890a9b4a7b48d4 ""
-  "artigoMxM.tex" 1466728959 19270 d4b0ca04d8483f438fe2e6e8bcded030 ""
+  "artigoMxM.out" 1466737695 551 58262263783ce2c8b6404bb5759810c3 ""
+  "artigoMxM.tex" 1466737693 19404 87c91639984eb442910c50ef6a26ae82 ""
   "caption2.sty" 1142535040 15596 af9754b7e71e33730b398cfc461da1a9 ""
   "pictures/openMP.jpg" 1466441705 12855 198238fdb1408c5d86c580bb4f4584fb ""
-  "pictures/speedup_C.png" 1466713405 51666 91d3c19fb8c56db60da2f544e06f432d ""
-  "pictures/speedup_Cython.png" 1466713660 48530 8e9e9f90eb1019019c09e8809606bdc1 ""
-  "pictures/speedup_Full.png" 1466724930 70715 f5d6b7a364f7df5417223a1f9f2b96d3 ""
-  "pictures/speedup_Java.png" 1466721156 51777 dca40e566a97f7dc6b50d08f98cd8cda ""
-  "pictures/speedup_Python.png" 1466713926 51438 ff4f18f45af2941ad60a573f74c88a99 ""
+  "pictures/speedup_full2.png" 1466729449 53436 2a687f9374367ea749ecd336d1b6a629 ""
   "pictures/tempo_paralelo.png" 1466728200 49597 574efae170c643a7e3645043fda8e9ad ""
   "pictures/tempo_serial.png" 1466728162 52645 32420bf3d8818af67f0b3007537662f0 ""
   "sbc-template.sty" 1142962734 5445 c11f91c7e54330186883fc8760b7b9df ""
   (generated)
-  "artigoMxM.log"
   "artigoMxM.pdf"
   "artigoMxM.out"
   "artigoMxM.aux"
+  "artigoMxM.log"

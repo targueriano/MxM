@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2016.6.22)  23 JUN 2016 21:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2016.6.22)  24 JUN 2016 00:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -851,7 +851,14 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip84
 )
-(./artigoMxM.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count133
+\float@exts=\toks37
+\float@box=\box41
+\@float@everytoks=\toks38
+\@floatcapt=\box42
+) (./artigoMxM.aux)
 \openout1 = `artigoMxM.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
@@ -869,7 +876,8 @@ LaTeX Font Info:    ... okay on input line 34.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
 LaTeX Font Info:    ... okay on input line 34.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 34.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 *geometry* driver: auto-detecting
@@ -908,17 +916,17 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count133
+\scratchcounter=\count134
 \scratchdimen=\dimen178
-\scratchbox=\box41
-\nofMPsegments=\count134
-\nofMParguments=\count135
-\everyMPshowfont=\toks37
-\MPscratchCnt=\count136
+\scratchbox=\box43
+\nofMPsegments=\count135
+\nofMParguments=\count136
+\everyMPshowfont=\toks39
+\MPscratchCnt=\count137
 \MPscratchDim=\dimen179
-\MPnumerator=\count137
-\makeMPintoPDFobject=\count138
-\everyMPtoPDFconversion=\toks38
+\MPnumerator=\count138
+\makeMPintoPDFobject=\count139
+\everyMPtoPDFconversion=\toks40
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -954,7 +962,7 @@ LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 34.
 Package xypdf Info: Line width: 0.47998pt on input line 34.
-\AtBeginShipoutBox=\box42
+\AtBeginShipoutBox=\box44
 Package hyperref Info: Link coloring OFF on input line 34.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -963,7 +971,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count139
+\c@section@level=\count140
 )
 LaTeX Info: Redefining \ref on input line 34.
 LaTeX Info: Redefining \pageref on input line 34.
@@ -1004,7 +1012,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 72.
 
-<pictures/openMP.jpg, id=59, 301.125pt x 125.46875pt>
+<pictures/openMP.jpg, id=55, 301.125pt x 125.46875pt>
 File: pictures/openMP.jpg Graphic file (type jpg)
 
 <use pictures/openMP.jpg>
@@ -1039,121 +1047,135 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 113.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 113.
- [3 <./pictures/openMP.jpg>]
+ [3pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.113 
+       <./pictures/openMP.jpg>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 114.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 119.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 122.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 160.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 159.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 164.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 171.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 177.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 177.
+ [4]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 203.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 203.
+ [5pdfTeX warning (ext4): destination with the same identifier (name{algocf.1})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.203 
+      ] <pictures/speedup_full2.png, id=117, 578.16pt x 433.62pt>
+File: pictures/speedup_full2.png Graphic file (type png)
+
+<use pictures/speedup_full2.png>
+Package pdftex.def Info: pictures/speedup_full2.png used on input line 293.
+(pdftex.def)             Requested size: 312.9803pt x 234.73357pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 165.
+(babel)             in language  on input line 297.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 165.
- [4]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 165.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 172.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 176.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 176.
+(babel)             in language  on input line 297.
+ [6pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
+has been already used, duplicate ignored
 
-[5] <pictures/speedup_C.png, id=118, 1233.6489pt x 614.295pt>
-File: pictures/speedup_C.png Graphic file (type png)
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.297 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.2
+}) has been already used, duplicate ignored
 
-<use pictures/speedup_C.png>
-Package pdftex.def Info: pictures/speedup_C.png used on input line 207.
-(pdftex.def)             Requested size: 426.79134pt x 212.52252pt.
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.297 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.3
+}) has been already used, duplicate ignored
 
-<pictures/speedup_Java.png, id=119, 1233.6489pt x 614.295pt>
-File: pictures/speedup_Java.png Graphic file (type png)
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.297 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.4
+}) has been already used, duplicate ignored
 
-<use pictures/speedup_Java.png>
-Package pdftex.def Info: pictures/speedup_Java.png used on input line 233.
-(pdftex.def)             Requested size: 426.79134pt x 212.52252pt.
-
-<pictures/speedup_Cython.png, id=120, 1233.6489pt x 614.295pt>
-File: pictures/speedup_Cython.png Graphic file (type png)
-
-<use pictures/speedup_Cython.png>
-Package pdftex.def Info: pictures/speedup_Cython.png used on input line 259.
-(pdftex.def)             Requested size: 426.79134pt x 212.52252pt.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 266.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 266.
- [6 <./pictures/speedup_C.png>]
-<pictures/speedup_Python.png, id=132, 1233.6489pt x 614.295pt>
-File: pictures/speedup_Python.png Graphic file (type png)
-
-<use pictures/speedup_Python.png>
-Package pdftex.def Info: pictures/speedup_Python.png used on input line 287.
-(pdftex.def)             Requested size: 426.79134pt x 212.52252pt.
-
-Underfull \vbox (badness 3758) has occurred while \output is active []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 294.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 294.
- [7 <./pictures/speedup_Java.png> <./pictures/speedup_Cython.png>]
-<pictures/speedup_Full.png, id=145, 1233.6489pt x 614.295pt>
-File: pictures/speedup_Full.png Graphic file (type png)
-
-<use pictures/speedup_Full.png>
-Package pdftex.def Info: pictures/speedup_Full.png used on input line 297.
-(pdftex.def)             Requested size: 426.79134pt x 212.52252pt.
-
-<pictures/tempo_serial.png, id=146, 578.16pt x 433.62pt>
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.297 
+      ] <pictures/tempo_serial.png, id=127, 578.16pt x 433.62pt>
 File: pictures/tempo_serial.png Graphic file (type png)
 
 <use pictures/tempo_serial.png>
-Package pdftex.def Info: pictures/tempo_serial.png used on input line 306.
-(pdftex.def)             Requested size: 426.79134pt x 320.09303pt.
+Package pdftex.def Info: pictures/tempo_serial.png used on input line 304.
+(pdftex.def)             Requested size: 312.9803pt x 234.73357pt.
 
-<pictures/tempo_paralelo.png, id=147, 578.16pt x 433.62pt>
+<pictures/tempo_paralelo.png, id=128, 578.16pt x 433.62pt>
 File: pictures/tempo_paralelo.png Graphic file (type png)
 
 <use pictures/tempo_paralelo.png>
-Package pdftex.def Info: pictures/tempo_paralelo.png used on input line 313.
-(pdftex.def)             Requested size: 426.79134pt x 320.09303pt.
+Package pdftex.def Info: pictures/tempo_paralelo.png used on input line 311.
+(pdftex.def)             Requested size: 312.9803pt x 234.73357pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 320.
+(babel)             in language  on input line 315.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 326.
+(babel)             in language  on input line 315.
+ [7pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.315 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.315 
+       <./pictures/speedup_full2.png> <./pictures/tempo_serial.png>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 326.
- [8 <./pictures/speedup_Python.png>]
+(babel)             in language  on input line 318.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 327.
 
 
-LaTeX Warning: Citation `1' on page 9 undefined on input line 329.
+LaTeX Warning: Citation `1' on page 8 undefined on input line 329.
 
 
-LaTeX Warning: Citation `2' on page 9 undefined on input line 331.
+LaTeX Warning: Citation `2' on page 8 undefined on input line 331.
 
 
-LaTeX Warning: Citation `3' on page 9 undefined on input line 333.
+LaTeX Warning: Citation `3' on page 8 undefined on input line 333.
 
 
-LaTeX Warning: Citation `4' on page 9 undefined on input line 335.
+LaTeX Warning: Citation `4' on page 8 undefined on input line 335.
 
 
-LaTeX Warning: Citation `5' on page 9 undefined on input line 338.
+LaTeX Warning: Citation `5' on page 8 undefined on input line 338.
 
 
-LaTeX Warning: Citation `6' on page 9 undefined on input line 340.
+LaTeX Warning: Citation `6' on page 8 undefined on input line 340.
 
 
-LaTeX Warning: Citation `7' on page 9 undefined on input line 342.
+LaTeX Warning: Citation `7' on page 8 undefined on input line 342.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 328--343
@@ -1176,20 +1198,26 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 343.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 343.
-[9 <./pictures/speedup_Full.png> <./pictures/tempo_serial.png>]
+[8pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.343 
+       <./pictures/tempo_paralelo.png>]
 No file artigoMxM.bbl.
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 348.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 348.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 348.
-[10 <./pictures/tempo_paralelo.png>]
+[9]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 348.
  (./artigoMxM.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 348.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 348.
 Package rerunfilecheck Info: File `artigoMxM.out' has not changed.
-(rerunfilecheck)             Checksum: D9290498AB64C04005890A9B4A7B48D4;609.
+(rerunfilecheck)             Checksum: 58262263783CE2C8B6404BB5759810C3;551.
 
 
 LaTeX Warning: There were undefined references.
@@ -1197,13 +1225,13 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 348.
  ) 
 Here is how much of TeX's memory you used:
- 12078 strings out of 494847
- 166845 string characters out of 6177494
- 330061 words of memory out of 5000000
- 15051 multiletter control sequences out of 15000+600000
+ 12103 strings out of 494847
+ 166902 string characters out of 6177494
+ 334191 words of memory out of 5000000
+ 15082 multiletter control sequences out of 15000+600000
  38338 words of font info for 103 fonts, out of 8000000 for 9000
  42 hyphenation exceptions out of 8191
- 38i,21n,43p,3244b,652s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,20n,43p,3244b,671s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{eq:amdhal} has been referenced but does not exist
 , replaced by a fixed one
 
@@ -1220,10 +1248,10 @@ exlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on artigoMxM.pdf (10 pages, 456739 bytes).
+Output written on artigoMxM.pdf (9 pages, 290651 bytes).
 PDF statistics:
- 228 PDF objects out of 1000 (max. 8388607)
- 185 compressed objects within 2 object streams
- 62 named destinations out of 1000 (max. 500000)
- 129 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 207 PDF objects out of 1000 (max. 8388607)
+ 173 compressed objects within 2 object streams
+ 56 named destinations out of 1000 (max. 500000)
+ 101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
