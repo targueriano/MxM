@@ -1,5 +1,5 @@
 # Fdb version 3
-["bibtex artigoMxM"] 1466737695 "artigoMxM.aux" "artigoMxM.bbl" "artigoMxM" 1466737695
+["bibtex artigoMxM"] 1466768595 "artigoMxM.aux" "artigoMxM.bbl" "artigoMxM" 1466768595
   "artigoMxM.aux" 1466737695 3680 6df20ab839c3affc528a26be13efbb98 ""
   "artigoMxM.bcf" 0 -1 0 ""
   "sbc-template.bib" 0 -1 0 ""
@@ -7,7 +7,7 @@
   (generated)
   "artigoMxM.bbl"
   "artigoMxM.blg"
-["pdflatex"] 1466737695 "artigoMxM.tex" "artigoMxM.pdf" "artigoMxM" 1466737695
+["pdflatex"] 1466737695 "artigoMxM.tex" "artigoMxM.pdf" "artigoMxM" 1466768595
   "/etc/texmf/web2c/texmf.cnf" 1461951382 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -187,7 +187,7 @@
   "artigoMxM.aux" 1466737695 3680 6df20ab839c3affc528a26be13efbb98 ""
   "artigoMxM.bbl" 0 -1 0 "bibtex artigoMxM"
   "artigoMxM.out" 1466737695 551 58262263783ce2c8b6404bb5759810c3 ""
-  "artigoMxM.tex" 1466737693 19404 87c91639984eb442910c50ef6a26ae82 ""
+  "artigoMxM.tex" 1466768594 19404 87c91639984eb442910c50ef6a26ae82 ""
   "caption2.sty" 1142535040 15596 af9754b7e71e33730b398cfc461da1a9 ""
   "pictures/openMP.jpg" 1466441705 12855 198238fdb1408c5d86c580bb4f4584fb ""
   "pictures/speedup_full2.png" 1466729449 53436 2a687f9374367ea749ecd336d1b6a629 ""
@@ -195,7 +195,7 @@
   "pictures/tempo_serial.png" 1466728162 52645 32420bf3d8818af67f0b3007537662f0 ""
   "sbc-template.sty" 1142962734 5445 c11f91c7e54330186883fc8760b7b9df ""
   (generated)
-  "artigoMxM.pdf"
   "artigoMxM.out"
   "artigoMxM.aux"
+  "artigoMxM.pdf"
   "artigoMxM.log"

@@ -174,9 +174,108 @@ Os testes foram executados em uma máquina Intel Core I7 3630QM, CPU 3.4 GHz. A 
 
 \end{frame}
 
+
 % ----------------- NOVO SLIDE --------------------------------
 \section{Resultados}
 
+\begin{frame}{Resultados}
+\frametitle{Tabela}
+\framesubtitle{I}
+
+\begin{table}[H]
+  \centering
+  \caption{Tempo de execução -- Java}
+  \begin{tabular}{ccc}
+    \hline
+    Matriz(ordem) & Serial(s) & Paralelo(s) -- Jomp\\
+    \hline
+    \hline
+    500 & 0.228 & 0.189\\
+    1000 & 0.845 & 0.413\\
+    1500 & 2.590 & 1.000\\
+    2000 & 6.274 & 2.157\\
+    \hline
+  \end{tabular}
+  \label{tab:timeJava}
+\end{table}
+
+\end{frame}
+
+% ----------------- NOVO SLIDE --------------------------------
+\begin{frame}{Resultados}
+\frametitle{Tabela}
+\framesubtitle{II}
+
+\begin{table}[H]
+  \centering
+  \caption{Tempo de execução -- C}
+  \begin{tabular}{ccc}
+    \hline
+    Matriz(ordem) & Serial(s) & Paralelo(s)\\
+    \hline
+    \hline
+    500 & 0.446 & 0.127\\
+    1000 & 3.292 & 0.898\\
+    1500 & 11.461 & 3.189\\
+    2000 & 26.847 & 7.235\\
+    \hline
+  \end{tabular}
+  \label{tab:timec}
+\end{table}
+
+\end{frame}
+
+% ----------------- NOVO SLIDE --------------------------------
+\begin{frame}{Resultados}
+\frametitle{Tabela}
+\framesubtitle{III}
+
+\begin{table}[H]
+  \centering
+  \caption{Tempo de execução -- Cython}
+  \begin{tabular}{ccc}
+    \hline
+    Matriz(ordem) & Serial(s) & Paralelo(s) -- Cython \\
+    \hline
+    \hline
+    500 & 0.837 &  0.504 \\
+    1000 & 10.186 & 3.841\\
+    1500 & 30.911 & 12.314\\
+    2000 & 1min41.794 & 29.442\\
+    \hline
+  \end{tabular}
+  \label{tab:timePy1}
+\end{table}
+
+\end{frame}
+
+% ----------------- NOVO SLIDE --------------------------------
+\begin{frame}{Resultados}
+\frametitle{Tabela}
+\framesubtitle{IV}
+
+\begin{table}[H]
+  \centering
+  \caption{Tempo de execução -- Python2.7}
+  \begin{tabular}{ccc}
+    \hline
+    Matriz(ordem) & Serial(s) & Paralelo(s) -- Multiprocessing \\
+    \hline
+    \hline
+    500 & 1.021 &  0.912 \\
+    1000 & 17.073 & 9.797\\
+    1500 & 1min7.847 & 31.116\\
+    2000 & 2min27.214 & 1min17.700\\
+    \hline
+  \end{tabular}
+  \label{tab:timePy2}
+\end{table}
+
+\end{frame}
+
+
+
+% ----------------- NOVO SLIDE --------------------------------
 \begin{frame}
 \frametitle{Gráficos}
 \framesubtitle{I}
