@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define SIZE 5000
+#define SIZE 1000
 float A[SIZE][SIZE];
 float B[SIZE][SIZE];
 float C[SIZE][SIZE];

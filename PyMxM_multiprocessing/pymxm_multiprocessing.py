@@ -7,7 +7,7 @@ import multiprocessing
 from random import randint
 import numpy as np
 from multiprocessing import Process
-SIZE = 2000
+SIZE = 1000
 
 
 def multiplica(args,A,B):

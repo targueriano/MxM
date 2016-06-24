@@ -13,7 +13,7 @@
 from random import randint
 import numpy as np
 
-SIZE = 2000
+SIZE = 1000
 
 
 class MxM_serial:
