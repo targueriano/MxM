@@ -1,0 +1,24 @@
+\begin{thebibliography}{}
+
+\bibitem[Behnel et~al. 2011]{cython}
+Behnel, S., Bradshaw, R., Citro, C., Dalcin, L., Seljebotn, D.~S., and Smith,
+  K. (2011).
+\newblock Cython: The best of both worlds.
+\newblock {\em Computing in Science \& Engineering}, 13(2):31--39.
+
+\bibitem[Costa and Sena 2008]{tutopenmp}
+Costa, J. and Sena, M. (2008).
+\newblock Tutorial openmp c/c++.
+\newblock {\em Laborat{\'o}rio de Computa{\c{c}}{\~a}o Cient{\'\i}fica e
+  Visualiza{\c{c}}{\~a}o, Macei{\'o}, AL}, 1.
+
+\bibitem[Sato ]{sato}
+Sato, L.~M.
+\newblock An{\'a}lise comparativa de desempenho de um algoritmo paralelo
+  implementado nas linguagens de programa{\c{c}}{\~a}o cpar e openmp.
+
+\bibitem[William 2010]{william}
+William, S. (2010).
+\newblock Arquitetura e organiza{\c{c}}{\~a}o de computadores.
+
+\end{thebibliography}

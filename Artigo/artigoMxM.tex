@@ -16,7 +16,7 @@
 \usepackage{float}
 \sloppy
 
-\title{Comparação entre algoritmos serial e paralelo escrito em C, Java e Python\\}
+\title{Comparação entre algoritmos sequencial e paralelo utilizados na resolução de multiplicação entre matrizes\\}
 
 \author{Taylan Branco Meurer\inst{1}, Leandro Loffi\inst{1}, Rodrigo Curvello\inst{2}}
 
@@ -46,9 +46,9 @@ Neste trabalho compara-se o desempenho de algoritmos seriais e paralelos. Os alg
 
 O trabalho trata sobre serialização e paralelismo de algoritmos. Os algoritmos em série são aqueles executados linha após linha por um único processador e algoritmos paralelos são aqueles executados por dois ou mais processadores ao mesmo tempo. 
 
-	As linguagens de programação paralela surgiram como um novo recurso para facilitar a tarefa de construir programas que utilizem os recursos de paralelismo de equipamentos com arquitetura de computação paralela (JUNIOR; MATTES, 2004). Para utilizar plenamente os recursos de um equipamento multiprocessado, existem basicamente duas opções, construir programas com controle sobre os trechos de paralelismo, utilizando recursos de uma Linguagem de Programação para a criação das threads e processos necessários, ou utilizar-se de uma biblioteca, a qual, normalmente, é composta por diretivas de compilador para uma linguagem de programação pré-existente, como C.
+	As linguagens de programação paralela surgiram como um novo recurso para facilitar a tarefa de construir programas que utilizem os recursos de paralelismo de equipamentos com arquitetura de computação paralela \cite{sato}. Para utilizar plenamente os recursos de um equipamento multiprocessado, existem basicamente duas opções, construir programas com controle sobre os trechos de paralelismo, utilizando recursos de uma Linguagem de Programação para a criação das threads e processos necessários, ou utilizar-se de uma biblioteca, a qual, normalmente, é composta por diretivas de compilador para uma linguagem de programação pré-existente, como C.
 	 
-	Desde a criação dessas arquiteturas, surgiram diversas bibliotecas ou APIs, entre elas a OpenMP, que será utilizada nesse trabalho. O desenvolvimento  desta API foi realizado através de um trabalho colaborativo entre os diversos parceiros interessados no projeto, entre eles: Compaq/Digital, Hewlett-Packard, Intel, IBM, KAI, Silicon Graphics, Sun entre outros.(JUNIOR; MATTES, 2004). 
+	Desde a criação dessas arquiteturas, surgiram diversas bibliotecas ou APIs, entre elas a OpenMP, que será utilizada nesse trabalho. O desenvolvimento  desta API foi realizado através de um trabalho colaborativo entre os diversos parceiros interessados no projeto, entre eles: Compaq/Digital, Hewlett-Packard, Intel, IBM, KAI, Silicon Graphics, Sun entre outros \cite{sato}. 
 	
 	O trabalho busca analisar e comparar o desempenho entre as linguagens Java, Python e C para execução de um algoritmo de multiplicação entre matrizes. As matrizes serão quadradas e terão ordem 500, 1500 e 2000. O desempenho será avaliado com emprego da lei de Amdahl e com o comando time do shell GNU/Linux em bash. 
 	
@@ -61,50 +61,41 @@ O trabalho trata sobre serialização e paralelismo de algoritmos. Os algoritmos
 
 A linguagem C fará uso da API OpenMP, a Java do Jomp e a Python do  OpenMP com Cython.
 
-O trabalho irá no capítulo seguinte tratar sobre a API OpenMP e a linguagem Cython. Em seguida, abordará a metodologia empregada para a construção do trabalho. Logo depois, apresentará os resultados e, por último, relatará as considerações finais e as referências bibliográficas. 
+O trabalho irá no capítulo seguinte tratar sobre a API OpenMP e a linguagem Cython. Em seguida, abordará a metodologia empregada para a construção do trabalho. Posteriormente, apresentará os resultados e, por último, relatará as considerações finais e as referências bibliográficas. 
 
-\section{Paralelismo}
-Paralelismo ocorre quando dois ou mais processadores compartilham um mesmo recurso de memória. Há paralelismo quando duas ou mais tarefas de um programa são executadas ao mesmo tempo por dois ou mais processadores. Para cada algoritmo paralelo existe um serial que efetua a mesma tarefa. O objetivo do paralelismo é obter um ganho de desempenho superior quando comparado com o serial.
+\section{Processamento Paralelo}
+Processamento paralelo consiste na divisão de uma determinada tarefa em tarefas menores e na execução de cada uma dessas tarefas em diferentes processadores \cite{tutopenmp}. Conforme \cite{william}, existem dois conceitos de paralelismo: de instruções e de máquina. O paralelismo de instruções existe quando as instruções de uma sequência são independentes e o de máquina é definido como uma medida da capacidade do processador em aproveitar o paralelismo no nível de instruções.
 
-Existem dois tipos de paralelismo, o de dados e o de controle. No paralelismo de dados, divide-se os dados e distribui-se cada conjunto gerado para um determinado processador. No paralelismo de controle, divide-se os problemas em tarefas independentes e cada tarefa será associada a um processo.  
+O processamento paralelo pode acontecer em ambientes de memória distribuída ou compartilhada. Segundo \cite{tutopenmp}, processamento paralelo em memória distribuída consiste na distribuição de tarefas para serem executadas em diferentes processadores com recursos próprios de memória. Processamento paralelo em ambientes de memória compartilhada consiste na divisão das tarefas entre vários processadores que compartilham o mesmo recurso de memória global.
 
 Nesse capítulo será apresentado de forma genérica informações sobre OpenMP, Multiprocessing e Cython. 
 \subsection{OpenMP}
 
-A API OpenMP oferece um conjunto de diretivas para a programação paralela em sistemas multiprocessados com memória compartilhada, realizando para tal a criação e o controle de Threads (JUNIOR; MATTES, 2004). As diretivas da OpenMP podem ser incluídas em programas escritos nas linguagens “C” e FORTRAN para especificar pedaços de programas que devem ser executados em paralelo.
+A API OpenMP oferece um conjunto de diretivas para a programação paralela em sistemas multiprocessados com memória compartilhada, realizando para tal a criação e o controle de Threads \cite{sato}. As diretivas da OpenMP podem ser incluídas em programas escritos nas linguagens “C” e FORTRAN para especificar pedaços de programas que devem ser executados em paralelo.
 
 O Open specification for Multiprocessing, simplesmente OpenMP, é um modelo de programação em memória compartilhada, que faz uso da especificação Pthreads. Ele surgiu a partir da cooperação de grandes fabricantes, como: Sun, IBM, Intel, AMD, HP, etc. Projetada para operar em C e Fortran, as especificações são diretivas que dizem ao compilador como gerar códigos paralelos. 
 
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics{pictures/openMP.jpg}
   \caption{Paralelismo.}
+  \includegraphics[width=15cm]{pictures/parallel.png}
+  \footnotesize{Fonte: OpenMP\footnotemark}
 \label{fig:parallel}
 \end{figure}
+\footnotetext{Disponível em:$<$https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Fork\underline{\hspace{0.1cm}}join.svg/2000px-Fork\underline{\hspace{0.1cm}}join.svg.png$>$ Acessado em: 05 de julho de 2016.}
 
-Conforme a figura \ref{fig:parallel}, pode-se visualizar a forma como pode ser dividida e o funcionamento de um programa que tem tarefas paralelas. Esta imagem foi brevemente dividida uma primeira parte em uma tarefa de 3 núcleos, na segunda parte em uma tarefa de 4 núcleos, e por último uma tarefa em 2 núcleos. Entre as tarefas, tem uma área comum serial, estas podem ser momentos em que uma tarefa pode estar ocupando um recurso de outra tarefa. Por fim mesmo que algum momento uma tarefa ficar dependendo de recurso de outra tarefa, ao final do programa a execução deverá ser mais rápida.
+Conforme a figura \ref{fig:parallel}, pode-se visualizar a forma como pode ser realizado a divisão e como funciona um programa com tarefas paralelas. A primeira tarefa é executada por 3 núcleos, a segunda tarefa em 4 núcleos e, por último, a terceira tarefa foi dividida para ser executada em paralelo por 2 núcleos. Entre as tarefas, existe uma área comum serial, a qual pode representar um local de memória compartilhada. 
 
-Internamente a OpenMP trabalha com um modelo “FORK-Join” onde a partir de uma
+Internamente a OpenMP trabalha com um modelo “FORK-JOIN” onde a partir de uma
 “thread master” (aquela que iniciou o programa) cria-se um time de threads para a
 realização de tarefas em paralelo, e depois é realizado um join onde todas as threads
 são sincronizadas e destruídas, sobrando somente a master thread.
 
-O algoritmo 1 demonstra a seguir um exemplo básico do uso de uma instrução em paralelo com OpenMP. Posteriormente será listada as principais diretivas e parâmetros da API.  
+O algoritmo 1 demonstra um exemplo básico do uso de uma instrução em paralelo com OpenMP. A partir do algoritmo é possível verificar o emprego das diretivas e dos parâmetros da API. Na linha 2, verifica-se a diretiva do construtor paralelo, o mais importante do OpenMP, uma vez que é o responsável pela indicação da região do código que será executado em paralelo \cite{tutopenmp}. Ainda na linha 2, estão inclusas três cláusulas do construtor, a saber, shared, private e num\underline{\hspace{0.1cm}}threads. O shared diz respeito às variáveis que são compartilhadas, o private recebe como parâmetros as variáveis privadas e o num\underline{\hspace{0.1cm}}threads recebe o número de threads que serão utilizadas para execução paralela. Na linha 4 e 12, emprega-se o construtor for, que faz com que as iterações da estrutura de repetição situada logo abaixo da diretiva sejam executadas em paralelo \cite{tutopenmp}.    
 
-\begin{itemize}
-  \item shared: variáveis compartilhadas por todas as threads;
-  \item privates: variáveis privadas as threads;
-  \item copyn: as variáveis possuem o valor inicial igual ao valor da thread principal;
-  \item redution: define uma fórmula para combinar as variáveis de todas as threads na variável da thread master;
-  \item mater: região executada apenas pela thread master;
-  \item critical: região que permite acesso apenas a uma thread por vez;
-  \item atomic: atribuição ocorre em série
-  \item barrier: sincroniza todas as threads;
-  \item flush: atualiza as variáveis públicas para evitar inconsistência de dados.
-\end{itemize}
 
-A lista acima não esgota o rol de diretivas e parâmetros da biblioteca OpenMP, mas são suficientes para a compreensão dos algoritmos. Estes algoritmos serão tratados mais tarde. A próxima seção irá contemplar breves informações sobre o módulo de paralelismo para Python - multiprocessing e Cython. 
+A próxima seção irá contemplar breves informações sobre o módulo de paralelismo para Python - multiprocessing e Cython. 
 
 \subsection{Multiprocessing}
 Multiprocessing\footnote{Disponível em:$<$https://docs.python.org/2/library/multiprocessing.html$>$ Acessado em: 23 de junho de 2016.} é um módulo Python para processamento paralelo. Ele faz uso de uma API semelhante ao threading. 
@@ -112,9 +103,9 @@ O pacote multiprocessing oferece concorrência local e remota, contornando o Glo
 O multiprocessing também apresenta APIs com características distintas do módulo threading. Um bom exemplo disso é o objeto Pool, o qual oferece um meio conveniente de paralelização por meio de uma função com vários valores de entrada, distribuindo esses dados de entrada nos processos (paralelismo de dados). 
 
 \subsection{Cython}
-O Cython pode ser definido como uma linguagem com tipos de dados em C. Quase todo código em Python é válido em Cython. Ele é uma linguagem que permite a geração de código C compilável e a geração de módulos para Python, tudo a partir de um código em Python. 
+Cython é um compilador estático otimizado para Python \cite{cython}. A linguagem Cython\footnote{Disponível em:$<$http://cython.org/$>$ Acessado em: 05 de julho de 2016} é um superconjunto da linguagem Python que suporta chamar funções e declarar tipos de dados C. Isso permite ao compilador gerar códigos em C eficientes a partir de um código Cython. Quase todo código em Python é válido em Cython. 
 
-Por que gerar módulos para Python em Cython? Por causa do desempenho, pois garante-se, no mínimo, 25\% de ganhos com relação ao Python puro. A virtude do Cython é a sua capacidade de usar variáveis e parâmetros como tipos de dados em C. As variáveis e parâmetros podem ser mistarados sem afetar a execução. Além disso, o Cython suporta paralelismo nativo atráveis do módulo {\bf cython.parallel}, que emprega a API OpenMP. 
+Com o emprego do Cython, garante-se, no mínimo, 25\% de ganhos com relação ao Python puro. A virtude do Cython é a sua capacidade de usar variáveis e parâmetros como tipos de dados em C. As variáveis e parâmetros podem ser misturadas sem afetar a execução \cite{cython}. Além disso, o Cython suporta paralelismo nativo através do módulo {\bf cython.parallel}, que emprega a API OpenMP. 
 
 \section{Algoritmo}
 A seguir será demonstrado o pseudocódigo do algoritmo utilizado no trabalho para execução paralela em C. Para obter o serial basta remover as diretivas do openmp: \#pragma omp argumento. 
@@ -166,7 +157,7 @@ A metodologia faz uso da linguagem C, Java e Python (versão 2.7). Cada linguage
 
 O algoritmo implementa uma multiplicação entre matrizes. Essa implementação é bastante conhecida e generalista. Além disso, exige grande esforço computacional. Os tempos de execução foram obtidos por meio do comando de terminal {\it time}\footnote{Disponível em: $<$http://ss64.com/bash/time.html$>$ Acessado em: 22 de junho de 2016.}. Este comando registra o tempo de CPU utilizado e retorna o valor em segundos.  
 
-Os testes foram executados em uma máquina Intel Core I7 3630QM, CPU 3.4 GHz. A máquina possui 8GB de memória RAM e faz uso de um SSD mSATA. O Sistema Operacional instalado é o Debian stretch com kernel 4.6.0-1-amd64 e Gnome.
+Os testes foram executados em uma máquina Intel Core I7 3630QM\footnote{Disponível em:$<$http://ark.intel.com/pt-br/products/71459/Intel-Core-i7-3630QM-Processor-6M-Cache-up-to-3\underline{\hspace{0.1cm}}40-GHz$>$ Acessado em: 20 de junho de 2016.}, CPU 3.4 GHz, 6MB de cache. A máquina possui 8GB de memória RAM e faz uso de um SSD mSATA. O Sistema Operacional instalado é o Debian stretch com kernel 4.6.0-1-amd64 e Gnome.
 
 \section{Resultados e discussões}
 
@@ -290,8 +281,10 @@ Na execução do python com multiprocessing foi efetuada uma alteração no algo
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=11.0cm]{pictures/speedup_full2.png}
   \caption{Ordem x Speedup}
+  \includegraphics[width=11.0cm]{pictures/speedup_full2.png}\vfill
+  \footnotesize{Fonte: Elaborada pelo autor.}
+  
 \label{fig:speedup_full}
 \end{figure}
 
@@ -301,15 +294,19 @@ Conforme os valores obtidos e os gráficos gerados, é possível observar que a 
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=11.0cm]{pictures/tempo_serial.png}
-  \caption{tempo serial}
+  \caption{Tempo sequencial}
+  \includegraphics[width=11.0cm]{pictures/tempo_serial.png}\vfill
+  \footnotesize{Fonte: Elaborada pelo autor.}
+  
 \label{fig:tempo_serial}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=11.0cm]{pictures/tempo_paralelo.png}
   \caption{Tempo paralelo}
+  \includegraphics[width=11.0cm]{pictures/tempo_paralelo.png}\vfill
+  \footnotesize{Fonte: Elaborada pelo autor.}
+  
 \label{fig:tempo_paralelo}
 \end{figure}
 
@@ -324,25 +321,9 @@ Exceto o Python com multiprocessing, as demais linguagens realizaram somente uma
 
 A partir dos resultados, que são bem limitados, nota-se que o emprego do OpenMP é mais vantajoso para a linguagem nativa, a saber, a C. Embora haja diversos projetos, bibliotecas ou módulos eficientes para as linguagens apresentadas nesse artigo, a interação entre API e linguagem ainda não é madura suficiente.  
 
-\section{Referências bibliográficas}
-\noindent
-\cite{1} CHANDRA, R. et al. “Parallel programming in openmp”. Morgan Kaufmann, 2001.\\
-\hspace{0.5cm}
-\cite{2} CORMEN, Thomas H. et al. “Introduction to Algorithms. The MIT Press”. Cambridge, Massachusetts, 2 Edição, 2001.\\
-\hspace{0.5cm}
-\cite{3} DANTAS, Sérgio Carrazedo, “Produções de significados para o jogo resta zero”, 2013. \\
-\hspace{0.5cm}
-\cite{4} JUNIOR, Claudio Penasio; MATTES, Leonardo. Análise Comparativa de Desempenho de um algoritmo Paralelo
-implementado nas Linguagens de Programação CPAR e OpenMP. São Paulo: 2004. \\
-\hspace{0.5cm}
-\cite{5} SOURCEFORGE, “Solitário”, http://peg-solitaire.sourceforge.net/, 2015, acessado em 02/06/16.\\
-\hspace{0.5cm}
-\cite{6} OpenMP, “OpenMP Application Programming Interface”. Disponível em:$<$http://www.openmp.org/mp-documents/openmp-4.5.pdf$>$ Acessado em: 02/06/2016\\
-\hspace{0.5cm}
-\cite{7} DEITEL, Harvey M.; DEITEL, Paul J. “Java como programar”. 8. ed. São Paulo: Pearson Prentice Hall, 2010. XL, 804-854 p.\\
 
 \bibliographystyle{sbc}
-\bibliography{sbc-template}
+\bibliography{references}
 
 
 \end{document}
